@@ -1,0 +1,105 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background: #f0f4f8;
+}
+.container{
+    margin: 80px auto;
+    max-width: 500px;
+    padding: 20px;
+    background: #ffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+h1{
+    text-align: center;
+    color: #825CFF;
+}
+h1,h2,h3,h4,p{
+    margin: 0;
+}
+.balance{
+    margin: 30px auto;
+    text-align: center;
+    font-weight: bold;
+}
+.balance p{
+    font-size: 24px;
+    color: #825CFF;
+}
+.income-expense{
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+    margin: 20px 0;
+}
+.income-expense div{
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.income-expense .expenses{
+    background: #ffecec;
+}
+.form-control{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+.form-control input{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.form-control input:focus{
+    border-color: #825CFF;
+    outline: none;
+}
+.btn{
+    padding: 10px;
+    background: #825CFF;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.btn:hover{
+    background: #6e4dcb;
+}
+.history{
+    margin-top: 20px;
+}
+.history h3{
+    color: #825CFF;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* below css stylings selectors are from js innerHTML */
+
+table th,table td{
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+table td.amount{
+    font-weight: bold;
+    color: #4caf50;
+}
+table td.amount.expense{
+    color: #f44336;
+}
