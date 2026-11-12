@@ -5,6 +5,72 @@ const list = document.getElementById('list');
 const text = document.getElementById('text');
 const addTransaction = document.getElementById('add-transaction');
 // amount variable from js
-const amount = document.getElementById('amount')
+const amount = document.getElementById('amount');
+const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
 
+function updateValues(){
+    const amounts = transactions.map(t => t.amount);
+    const total = amounts.reduce((acc,item) => acc + item, 0).toFixed(2);
+    const incomeTotal = amounts.filter(a => a > 0).reduce((acc,item) => acc + item,0).toFixed(2)
+    const expenseTotal = (amounts.filter(a => a < 0).reduce((acc,item) => acc + item, 0)* -1).toFixed(2)
+
+    balance.textContent = `$${total}`;
+    income.textContent = `$${incomeTotal}`;
+    expense.textContent = ` $${expenseTotal}`;
+}
+
+function addTransactionDOM(transaction){
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+    <td>${transaction.date}</td>
+    <td>${transaction.text}</td>
+    <td>${transaction.amount.toFixed(2)}</td>
+    <td class = "${transaction.amount <0 ? 'expense':''}" >
+        <button onclick = "removeTransaction(${transaction.id})">X</button>
+    </td>
+    `;
+    list.appendChild(tr);
+}
+
+function removeTransaction(id) {
+  transactions = transactions.filter(t => t.id !== id);
+  updateLocalStorage();
+  updateUI();
+}
+
+function updateUI() {
+  list.innerHTML = '';
+  transactions.forEach(addTransactionDOM);
+  updateValues();
+}
+
+function updateLocalStorage() {
+  localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
+addTransaction.addEventListener('click', ()=>{
+    const textValue = text.value.trim();
+    const amountValue = parseFloat(amount.value);
+
+    if(!textValue || isNaN(amountValue)){
+        alert('please enter valid description and amount.');
+        return;
+    }
+    const transaction = {
+        id: Date.now(),
+        text: textValue,
+        amount: amountValue,
+        date: new Date().toISOString().split('T')[0],
+    };
+    transactions.push(transaction);
+    updateLocalStorage();
+    updateUI();
+    text.value = '';
+    amount.value = '';
+});
+function init() {
+  updateUI();
+}
+
+init();

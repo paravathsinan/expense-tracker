@@ -79,6 +79,7 @@ h1,h2,h3,h4,p{
 }
 .history h3{
     color: #825CFF;
+    padding-bottom: 15px;
 }
 table{
     width: 100%;
